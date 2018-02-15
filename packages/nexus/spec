@@ -1,0 +1,8 @@
+---
+name: nexus
+
+dependencies: 
+   - java
+
+files:
+   - nexus/nexus-3.8.0-02-unix.tar.gz

@@ -1,0 +1,6 @@
+java/jdk-8u161-linux-x64.tar.gz:
+  size: 189756259
+  sha: 9662b358ec90ecdc2c06acc2e326fbf25eaf567d
+nexus/nexus-3.8.0-02-unix.tar.gz:
+  size: 113247950
+  sha: c5a478074b71c74ca92a21584da859f16f255e54

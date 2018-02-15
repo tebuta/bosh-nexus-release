@@ -1,0 +1,33 @@
+---
+name: nexus
+
+releases:
+- name: nexus
+  version: latest
+
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
+
+update:
+  canaries: 1
+  max_in_flight: 2
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000
+
+instance_groups:
+- name: nexus
+  azs:
+  - z1
+  instances: 1
+  jobs:
+  - name: nexus
+    release: nexus
+    properties: {}
+  vm_type: f1-micro
+  stemcell: default
+  networks:
+  - name: default
+tags:
+  project: nexus

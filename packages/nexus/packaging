@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+tar xfv nexus/nexus-3.8.0-02-unix.tar.gz
+cp -ar ./nexus-3.8.0-02 $BOSH_INSTALL_TARGET/nexus
+cp -ar ./sonatype-work $BOSH_INSTALL_TARGET/

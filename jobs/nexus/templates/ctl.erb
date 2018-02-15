@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+set -u
+
+RUNAS=vcap
+JOB_NAME=nexus
+RUN_DIR=/var/vcap/sys/run/$JOB_NAME
+LOG_DIR=/var/vcap/sys/log/$JOB_NAME
+TMP_DIR=/var/vcap/data/sys/tmp
+DATA_PKG_DIR=/var/vcap/data/packages
+PACKAGE_DIR=/var/vcap/packages/$JOB_NAME
+JOB_DIR=/var/vcap/jobs/$JOB_NAME
+PIDFILE=${RUN_DIR}/pid
+INSTALL4J_JAVA_HOME=/var/vcap/packages/java/jdk1.8.0_161
+PATH=$PATH:$INSTALL4J_JAVA_HOME/bin
+
+case $1 in
+
+  start)
+    	mkdir -p $RUN_DIR $LOG_DIR
+    
+	chown -R $RUNAS:$RUNAS $RUN_DIR $LOG_DIR $JOB_DIR $DATA_PKG_DIR
+	
+	cd /var/vcap/packages/nexus/nexus
+    	
+	export INSTALL4J_JAVA_HOME=/var/vcap/packages/java/jdk1.8.0_161
+    	
+	export PATH=/var/vcap/jobs/nexus/packages/nexus/nexus/bin:$PATH
+
+    	echo $$ > $PIDFILE
+
+    	exec chpst -u vcap:vcap /var/vcap/jobs/nexus/packages/nexus/nexus/bin/nexus run \
+          >> $LOG_DIR/$JOB_NAME.stdout.log \
+          2>> $LOG_DIR/$JOB_NAME.stderr.log
+
+    ;;
+  stop)
+    kill -9 `cat $PIDFILE`
+    rm -f $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+esac

@@ -1,0 +1,21 @@
+name: nexus
+version: 0+dev.8
+commit_hash: non-git
+uncommitted_changes: false
+jobs:
+- name: nexus
+  version: 9e4cb33518ccfdd774aa15c85f555ba7442b2b25
+  fingerprint: 9e4cb33518ccfdd774aa15c85f555ba7442b2b25
+  sha1: 5fa20ab0ac0cd5a01aac8d089fdd734a06a1730a
+packages:
+- name: java
+  version: 1825c2db72d7523769f9b4c2c851a707e2efc4c5
+  fingerprint: 1825c2db72d7523769f9b4c2c851a707e2efc4c5
+  sha1: 4c814abb4a4516a57e82e3e826fc8690542006f2
+  dependencies: []
+- name: nexus
+  version: 16e2544d0950e41e59aef3e63e1301a3ac28839c
+  fingerprint: 16e2544d0950e41e59aef3e63e1301a3ac28839c
+  sha1: c19ed55a2e530a2e5501ba01a2eaee0d5163aa2d
+  dependencies:
+  - java
